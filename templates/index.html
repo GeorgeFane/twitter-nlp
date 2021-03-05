@@ -1,27 +1,45 @@
-<title>Twitter NLP</title>
-<h1>Twitter NLP</h1>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}">
 
-<form method="POST">
+<title>Twitter Scraper</title>
+<h1>Twitter Scraper</h1>
 
-    <input type="text" name="query">
-    <label>Query</label>
-    <br>
+<div style="display:flex;">
+    <div style="padding: 9px;">
+        {% 
+        for x in [
+            'Search by',
+            'Query',
+            '# Tweets to get'
+        ] 
+        %}
 
-    <label>Queries by keyword; prefix with 'from:' to query by user</label>
-    <br><br>
+        <label>{{ x }}:</label>
+        <br>
 
-    <input type="number" name="count">
-    <label># Tweets to get</label>
-    <br><br>
+        {% endfor %}
+        <br>
+    </div>
+    
+    <div>
+    
+        <form method="POST">
+            <select name="type">
+                {% for x in 'hashtag user'.split() %}
+                <option value="{{ x }}">{{ x }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            
+            <input type="text" name="query">
+            <br>
+            
+            <input type="number" name="count">
+            <br>
+    
+            <input type="submit">
+        </form>
 
-    <input type="date" name="start">
-    <label>Time Range Start</label>
-    <br>
+    </div>    
+</div>
 
-    <input type="date" name="end">
-    <label>Time Range End</label>
-    <br>
-
-    <input type="submit">
-
-</form>
+<textarea>{{ textarea }}</textarea>
